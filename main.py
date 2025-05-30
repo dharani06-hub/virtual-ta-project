@@ -1,8 +1,18 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List
 
 app = FastAPI()
+
+# CORS setup to avoid browser fetch errors
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Change to your frontend URL if needed
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class Link(BaseModel):
     url: str
@@ -31,3 +41,7 @@ async def ask_virtual_ta(query: Query):
             }
         ]
     }
+
+@app.get("/")
+async def root():
+    return {"message": "Virtual TA API is running. Use POST /api/ to interact."}
