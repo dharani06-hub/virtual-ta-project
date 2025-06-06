@@ -1,24 +1,20 @@
-# Virtual Teaching Assistant (TDS Project 1)
+# Virtual TA for Tools in Data Science
 
-This project is a Virtual Teaching Assistant (TA) built using FastAPI, which responds to questions based on pre-scraped IITM course data.
+This is a FastAPI-based virtual assistant to answer student questions using IITM Discourse and course content.
 
-## 🚀 Features
-- FastAPI backend with a single `/api/` endpoint
-- Accepts questions and returns relevant responses and links
-- Deployed publicly on Vercel or Railway
+## Run locally
 
-## 🔗 Deployed URL
-[https://your-project-url.com](https://your-project-url.com)
+```bash
+uvicorn main:app --reload
+```
 
-## 📂 Folder Structure
-- `main.py` - FastAPI app
-- `data/` - pre-scraped JSON files
-- `requirements.txt` - dependencies
+## API Endpoint
 
-## 📌 How to Use
-Send a POST request to `/api/` with:
+POST `/api/` with JSON:
+
 ```json
 {
-  "question": "Your question here"
+  "question": "Your question here",
+  "image": null
 }
-# virtual-ta-project
+```
