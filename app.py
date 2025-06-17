@@ -5,6 +5,7 @@ import sqlite3
 import numpy as np
 import re
 from fastapi import FastAPI, HTTPException, File, UploadFile, Form, Body
+from fastapi import APIRouter
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
