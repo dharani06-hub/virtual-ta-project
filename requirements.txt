@@ -1,5 +1,7 @@
 # requirements.txt
 fastapi
 uvicorn
-python-multipart # Needed by FastAPI for some functionalities, even if not directly using forms
+numpy
+aiohttp
+python-dotenv # Needed by FastAPI for some functionalities, even if not directly using forms
 # Add any other libraries your LLM integration would need (e.g., openai, google-generativeai)
