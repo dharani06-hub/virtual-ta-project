@@ -57,6 +57,9 @@ app.add_middleware(
 # Verify API key is set
 if not API_KEY:
     logger.error("API_KEY environment variable is not set. The application will not function correctly.")
+    # Define an API router
+api_router = APIRouter()
+
 
 # Create a connection to the SQLite database
 def get_db_connection():
@@ -596,7 +599,7 @@ def parse_llm_response(response):
         }
 
 # Define API routes
-@app.post("/query")
+@api_router.post("/query")
 async def query_knowledge_base(request: QueryRequest):
     try:
         # Log the incoming request
@@ -723,6 +726,9 @@ async def health_check():
             status_code=500,
             content={"status": "unhealthy", "error": str(e), "api_key_set": bool(API_KEY)}
         )
+        # Mount API routes under /api
+app.include_router(api_router, prefix="/api")
+
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the RAG Query API. Use POST /query to submit questions."}
